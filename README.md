@@ -19,7 +19,7 @@ A production-ready multi-user collaborative whiteboard built with **HTML5 Canvas
 | **Persistence** | Drawing operations are saved to disk as JSON — survives server restarts |
 | **Performance** | `requestAnimationFrame` rendering, point batching, and quadratic bezier curve smoothing |
 | **Mobile Support** | Touch events (`touchstart`, `touchmove`, `touchend`) with responsive layout, and fully functional mobile toolbar |
-| **Keyboard Shortcuts** | `Ctrl+Z` undo, `Ctrl+Y` redo, `B` brush, `E` eraser *(Optional — the UI is fully user-friendly, so you don't have to worry about using these!)* |
+| **Keyboard Shortcuts** | `Ctrl+Z` undo, `Ctrl+Y` redo, `B` brush, `E` eraser |
 
 ## Tech Stack
 
