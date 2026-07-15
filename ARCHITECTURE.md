@@ -34,15 +34,16 @@ We do NOT use image snapshots. The canvas is defined purely by an array of seque
 }
 ```
 
-This model enables infinite redrawing, scaling, conflict resolution, and global undo functionalities.
+This model enables infinite redrawing, scaling, conflict resolution, and global undo/redo functionalities.
 
-## 4. Global Undo Strategy
+## 4. Global Undo/Redo Strategy
 
 Since the state is an array of operations:
-- When a user triggers "Undo", the server pops the *last* operation off the room's operation stack.
-- The server broadcasts an `undo-update` event to the room containing the newly truncated operations array.
+- When a user triggers "Undo", the server pops the *last* operation off the room's operation stack and pushes it onto a `redoStack`.
+- When a user triggers "Redo", the server pops the operation from the `redoStack` and pushes it back onto the operation stack.
+- In both cases, the server broadcasts an `undo-update` or `redo-update` event to the room containing the newly modified operations array.
 - All clients receive the event, clear their local canvas (`ctx.clearRect`), and redraw the entire remaining operations array sequentially.
-- This ensures perfect eventual consistency.
+- This ensures perfect eventual consistency. New drawing operations automatically clear the `redoStack`.
 
 ## 5. Conflict Resolution Strategy
 

@@ -15,11 +15,11 @@ A production-ready multi-user collaborative whiteboard built with **HTML5 Canvas
 | **Room System** | Create or join isolated rooms — each room has its own canvas and user list |
 | **Live Cursors** | See where other users are drawing in real-time with color-coded cursor labels |
 | **User Presence** | Online user count with unique assigned colors and names |
-| **Global Undo** | Operation-based undo removes the last stroke for all users and rebuilds the canvas |
+| **Global Undo & Redo** | Operation-based undo removes the last stroke for all users. Redo restores it. Both rebuild the canvas in real-time |
 | **Persistence** | Drawing operations are saved to disk as JSON — survives server restarts |
 | **Performance** | `requestAnimationFrame` rendering, point batching, and quadratic bezier curve smoothing |
-| **Mobile Support** | Touch events (`touchstart`, `touchmove`, `touchend`) with responsive layout |
-| **Keyboard Shortcuts** | `Ctrl+Z` undo, `B` brush, `E` eraser *(Optional — the UI is fully user-friendly, so you don't have to worry about using these!)* |
+| **Mobile Support** | Touch events (`touchstart`, `touchmove`, `touchend`) with responsive layout, and fully functional mobile toolbar |
+| **Keyboard Shortcuts** | `Ctrl+Z` undo, `Ctrl+Y` redo, `B` brush, `E` eraser *(Optional — the UI is fully user-friendly, so you don't have to worry about using these!)* |
 
 ## Tech Stack
 

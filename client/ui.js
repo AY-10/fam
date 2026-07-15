@@ -16,6 +16,7 @@ export const elements = {
   colorPicker: document.getElementById('color-picker'),
   strokeWidth: document.getElementById('stroke-width'),
   actionUndo: document.getElementById('action-undo'),
+  actionRedo: document.getElementById('action-redo'),
   actionClear: document.getElementById('action-clear'),
   cursorsContainer: document.getElementById('cursors-container')
 };
@@ -82,8 +83,11 @@ export function initUI(callbacks) {
     }
   });
 
-  // Undo / Clear
+  // Undo / Redo / Clear
   elements.actionUndo.addEventListener('click', () => callbacks.onUndo());
+  if (elements.actionRedo) {
+    elements.actionRedo.addEventListener('click', () => callbacks.onRedo());
+  }
   elements.actionClear.addEventListener('click', () => callbacks.onClear());
 
   // Keyboard shortcuts
@@ -92,6 +96,10 @@ export function initUI(callbacks) {
       if (e.key === 'z') {
         e.preventDefault();
         callbacks.onUndo();
+      }
+      if (e.key === 'y') {
+        e.preventDefault();
+        callbacks.onRedo();
       }
     }
     // Tool shortcuts

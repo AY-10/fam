@@ -3,6 +3,7 @@ import {
   initSocket, 
   joinRoom, 
   emitUndo, 
+  emitRedo,
   emitClear 
 } from './websocket.js';
 import { 
@@ -21,6 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     onUndo: () => {
       emitUndo();
+    },
+    onRedo: () => {
+      emitRedo();
     },
     onClear: () => {
       emitClear();

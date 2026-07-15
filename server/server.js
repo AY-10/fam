@@ -16,6 +16,7 @@ import {
   getRoomOperations, 
   addOperation, 
   undoLastOperation, 
+  redoLastOperation,
   clearRoom 
 } from './drawing-state.js';
 import { generateId, validateDrawingOperation } from './utils.js';
@@ -134,6 +135,19 @@ io.on('connection', (socket) => {
     if (undoneOp) {
       // Tell everyone to rebuild canvas without this operation
       io.to(user.roomId).emit('undo-update', {
+        operations: getRoomOperations(user.roomId)
+      });
+    }
+  });
+
+  // Global Redo
+  socket.on('redo', () => {
+    const user = getUser(socket.id);
+    if (!user) return;
+    
+    const redoneOp = redoLastOperation(user.roomId, user.id);
+    if (redoneOp) {
+      io.to(user.roomId).emit('redo-update', {
         operations: getRoomOperations(user.roomId)
       });
     }

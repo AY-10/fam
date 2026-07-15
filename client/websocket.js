@@ -53,8 +53,12 @@ export function initSocket(roomId, callbacks) {
     }
   });
 
-  // Undo / State Replace
+  // Undo / Redo / State Replace
   socket.on('undo-update', (data) => {
+    canvasCallbacks.onCanvasState(data.operations);
+  });
+
+  socket.on('redo-update', (data) => {
     canvasCallbacks.onCanvasState(data.operations);
   });
 
@@ -108,6 +112,12 @@ export function emitCursorMove(position) {
 export function emitUndo() {
   if (socket && socket.connected) {
     socket.emit('undo');
+  }
+}
+
+export function emitRedo() {
+  if (socket && socket.connected) {
+    socket.emit('redo');
   }
 }
 
