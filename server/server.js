@@ -7,7 +7,8 @@ import {
   joinRoom, 
   leaveRoom, 
   getUser, 
-  getRoomUsers 
+  getRoomUsers,
+  getActiveRooms
 } from './rooms.js';
 import { 
   initDrawingState, 
@@ -41,6 +42,8 @@ initDrawingState();
 
 io.on('connection', (socket) => {
   console.log(`User connected: ${socket.id}`);
+  
+  socket.emit('active-rooms', getActiveRooms());
 
   // Room management
   socket.on('join-room', (roomId, userName, callback) => {
@@ -48,6 +51,9 @@ io.on('connection', (socket) => {
     loadRoomState(roomId);
     
     const user = joinRoom(socket, roomId, userName);
+    
+    // Broadcast active rooms to all connected clients
+    io.emit('active-rooms', getActiveRooms());
     
     // Broadcast user joined
     socket.to(roomId).emit('user-joined', user);
@@ -149,6 +155,7 @@ io.on('connection', (socket) => {
     const user = leaveRoom(socket);
     if (user) {
       socket.to(user.roomId).emit('user-left', user.id);
+      io.emit('active-rooms', getActiveRooms());
     }
     console.log(`User disconnected: ${socket.id}`);
   });

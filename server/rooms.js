@@ -57,3 +57,7 @@ export function getRoomUsers(roomId) {
   const userIds = Array.from(rooms.get(roomId));
   return userIds.map(id => activeUsers.get(id));
 }
+
+export function getActiveRooms() {
+  return Array.from(rooms.keys());
+}

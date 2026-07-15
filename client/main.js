@@ -1,4 +1,4 @@
-import { initUI, state } from './ui.js';
+import { initUI, state, updateActiveRooms } from './ui.js';
 import { 
   initSocket, 
   joinRoom, 
@@ -32,7 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
     onRemoteDrawStart: handleRemoteDrawStart,
     onRemoteDrawMove: handleRemoteDrawMove,
     onRemoteDrawEnd: handleRemoteDrawEnd,
-    onCanvasState: setCanvasState
+    onCanvasState: setCanvasState,
+    onActiveRooms: (rooms) => {
+      updateActiveRooms(rooms, (roomId) => {
+        joinRoom(roomId);
+      });
+    }
   });
 
 });

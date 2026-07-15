@@ -27,6 +27,12 @@ export function initSocket(roomId, callbacks) {
     removeCursor(userId);
   });
 
+  socket.on('active-rooms', (rooms) => {
+    if (canvasCallbacks.onActiveRooms) {
+      canvasCallbacks.onActiveRooms(rooms);
+    }
+  });
+
   // Canvas Drawing Events
   socket.on('draw-start', (operation) => {
     canvasCallbacks.onRemoteDrawStart(operation);
