@@ -4,6 +4,14 @@ A production-ready multi-user collaborative whiteboard built with **HTML5 Canvas
 
 > **Live Demo:** [https://collaborative-canvas-3exn.onrender.com](https://collaborative-canvas-3exn.onrender.com)
 
+## Screenshot & Demo
+
+![Application Screenshot](./screenshot.png)
+
+<video src="./demo.mp4" controls="controls" width="100%" height="auto">
+  Your browser does not support the video tag.
+</video>
+
 ---
 
 ## Features
