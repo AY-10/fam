@@ -6,7 +6,7 @@ A production-ready multi-user collaborative whiteboard built with **HTML5 Canvas
 
 ## Screenshot & Demo
 
-![Application Screenshot](./screenshot.png)
+![Application Screenshot](./real-screenshot.png)
 
 <video src="./demo.mp4" controls="controls" width="100%" height="auto">
   Your browser does not support the video tag.
